@@ -2,7 +2,11 @@ package com.nextar.calculator.controllers;
 
 import com.nextar.calculator.classes.CalculatorError;
 import com.nextar.calculator.classes.CalculatorParameters;
+import com.nextar.calculator.classes.CalculatorRequest;
 import com.nextar.calculator.classes.CalculatorResult;
+import com.nextar.calculator.repositories.RequestRepository;
+import com.nextar.calculator.services.RequestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +14,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @ControllerAdvice
 class CalculatorController {
+
+    @Autowired
+    private RequestService requestService;
+
     @PostMapping("/calculate")
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> CalculateExpression(@RequestBody CalculatorParameters parameters){
         try{
             String expression = parameters.getExpressao();
+
+
             expression = expression.replaceAll("\\s+", "");//remove espaços em branco
 
             if (!expression.matches("[\\d+\\-*/().]+")) {
@@ -23,7 +33,10 @@ class CalculatorController {
             Double evaluateResult = evaluate(expression);
             CalculatorResult result = new CalculatorResult(evaluateResult);
 
-
+            CalculatorRequest calcRequest = new CalculatorRequest();
+            calcRequest.setExpression(expression);
+            calcRequest.setResult(evaluateResult);
+            requestService.saveRequest(calcRequest);
 
             return ResponseEntity.status(HttpStatus.OK).body(result);
         }catch(Exception e){

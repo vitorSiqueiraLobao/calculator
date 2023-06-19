@@ -15,7 +15,7 @@ public class RequestService {
     }
 
     public CalculatorRequest findByExpression(String expression){
-        this.requestRepository.findBy();
+        return  requestRepository.findByExpression(expression);
     }
 
     public CalculatorRequest saveRequest(CalculatorRequest request) {

@@ -97,7 +97,7 @@ class CalculatorApplicationTests {
 						.content(objectMapper.writeValueAsString(request))
 				)
 				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.resultado",equalTo(11)));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.resultado",equalTo(42.5)));
 	}
 
 

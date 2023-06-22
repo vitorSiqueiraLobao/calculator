@@ -19,6 +19,10 @@ jobs:
         with:
           java-version: 17
           distribution: 'temurin'
+          cache: maven
+
+      - name: Set execute permissions for mvnw
+        run: chmod +x mvnw
 
       - name: Build the Spring Boot app
         run: ./mvnw clean install
@@ -29,7 +33,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{secrets.EC2_SSH_KEY}}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "./target/*.jar"
-          REMOTE_HOST: "ec2-18-191-189-215.us-east-2.compute.amazonaws.com"
-          REMOTE_USER: "ec2-user"
-          TARGET: "/home/ec2-user"
+          REMOTE_HOST: ${{secrets.REMOTE_HOST}}
+          REMOTE_USER: ${{secrets.REMOTE_USER}}
+          TARGET: ${{secrets.TARGET_DIR}}
           EXCLUDE: "/dist/, /node_modules/, **.env, rebuild_app.sh, watcher.sh"

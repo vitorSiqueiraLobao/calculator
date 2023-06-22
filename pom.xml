@@ -83,6 +83,12 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/vitorSiqueiraLobao/calculator</url>
+		</repository>
+	</distributionManagement>
 
 
 </project>

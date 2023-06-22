@@ -19,9 +19,9 @@ public class EvaluateService {
 
         // Realiza multiplicação e divisão
         while (expression.contains("*") || expression.contains("/")) {
-            String expressionWithoutDecimals = expression.replaceAll("\\.\\d+", "");
-            int multiplyIndex = expressionWithoutDecimals.indexOf("*");
-            int divideIndex = expressionWithoutDecimals.indexOf("/");
+            String[] operands = expression.split("(?<=[-+*/])|(?=[-+*/])");
+            int multiplyIndex = Arrays.asList(operands).indexOf("*");
+            int divideIndex = Arrays.asList(operands).indexOf("/");
             int operatorIndex;
             if (multiplyIndex >= 0 && divideIndex >= 0) {
                 operatorIndex = Math.min(multiplyIndex, divideIndex);
@@ -30,12 +30,10 @@ public class EvaluateService {
             } else {
                 operatorIndex = divideIndex;
             }
-
-            String[] operands = expression.split("(?<=[-+*/])|(?=[-+*/])");
             double leftOperand = Double.parseDouble(operands[operatorIndex-1]);
             double rightOperand = Double.parseDouble(operands[operatorIndex+1]);
             double ineerResult;
-            if (expressionWithoutDecimals.charAt(operatorIndex) == '*') {
+            if (operands[operatorIndex].equals("*")) {
                 ineerResult = leftOperand * rightOperand;
             } else {
                 ineerResult = leftOperand / rightOperand;
@@ -45,7 +43,6 @@ public class EvaluateService {
 
         // Realiza adição e subtração
         while (expression.contains("-")||expression.contains("+")){
-            String expressionWithoutDecimals = expression.replaceAll("\\.\\d+", "");
             String[] operands = expression.split("(?<=[-+*/])|(?=[-+*/])");
 
             int subIndex = Arrays.asList(operands).indexOf("-");
@@ -62,8 +59,7 @@ public class EvaluateService {
             double leftOperand = Double.parseDouble(operands[operatorIndex-1]);
             double rightOperand = Double.parseDouble(operands[operatorIndex+1]);
             double ineerResult;
-            System.out.println(operands[operatorIndex].equals('+'));
-            if (operands[operatorIndex].equals('+')) {
+            if (operands[operatorIndex].equals("+")) {
                 ineerResult = leftOperand + rightOperand;
             } else {
                 ineerResult = leftOperand - rightOperand;

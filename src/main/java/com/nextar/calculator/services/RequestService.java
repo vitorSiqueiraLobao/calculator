@@ -1,6 +1,6 @@
 package com.nextar.calculator.services;
 
-import com.nextar.calculator.classes.CalculatorRequest;
+import com.nextar.calculator.models.CalculatorRequest;
 import com.nextar.calculator.repositories.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

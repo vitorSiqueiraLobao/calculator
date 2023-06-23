@@ -1,4 +1,4 @@
-package com.nextar.calculator.classes;
+package com.nextar.calculator.models;
 
 
 

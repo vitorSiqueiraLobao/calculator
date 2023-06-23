@@ -1,9 +1,9 @@
 package com.nextar.calculator.controllers;
 
-import com.nextar.calculator.classes.CalculatorError;
-import com.nextar.calculator.classes.CalculatorParameters;
-import com.nextar.calculator.classes.CalculatorRequest;
-import com.nextar.calculator.classes.CalculatorResult;
+import com.nextar.calculator.models.CalculatorError;
+import com.nextar.calculator.models.CalculatorParameters;
+import com.nextar.calculator.models.CalculatorRequest;
+import com.nextar.calculator.models.CalculatorResult;
 
 import com.nextar.calculator.services.EvaluateService;
 import com.nextar.calculator.services.RequestService;
@@ -24,7 +24,6 @@ class CalculatorController {
     private EvaluateService evaluateService;
 
     @PostMapping("/calculate")
-    @ExceptionHandler(Exception.class)
     public ResponseEntity<?> CalculateExpression(@RequestBody CalculatorParameters parameters){
         try{
             String expression = parameters.getExpressao();

@@ -1,7 +1,7 @@
 package com.nextar.calculator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nextar.calculator.classes.CalculatorParameters;
+import com.nextar.calculator.models.CalculatorParameters;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

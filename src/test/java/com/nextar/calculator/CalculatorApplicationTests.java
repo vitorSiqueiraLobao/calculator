@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -24,6 +25,7 @@ class CalculatorApplicationTests {
 	private MockMvc mockMvc;
 
 	@Test
+	@WithMockUser(username = "your-username", password = "your-password", roles = "USER")
 	public void testScenario1() throws Exception {
 		CalculatorParameters request = new CalculatorParameters("(2+2)*3");
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -36,6 +38,7 @@ class CalculatorApplicationTests {
 	}
 
 	@Test
+	@WithMockUser(username = "your-username", password = "your-password", roles = "USER")
 	public void testScenario2() throws Exception {
 		CalculatorParameters request = new CalculatorParameters("2.2+2.2");
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -54,6 +57,7 @@ class CalculatorApplicationTests {
 	}
 
 	@Test
+	@WithMockUser(username = "your-username", password = "your-password", roles = "USER")
 	public void testScenario3() throws Exception {
 		CalculatorParameters request = new CalculatorParameters("2.3*2.3+5");
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -66,6 +70,7 @@ class CalculatorApplicationTests {
 	}
 
 	@Test
+	@WithMockUser(username = "your-username", password = "your-password", roles = "USER")
 	public void testScenario4() throws Exception {
 		CalculatorParameters request = new CalculatorParameters("2.33/3");
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -78,6 +83,7 @@ class CalculatorApplicationTests {
 	}
 
 	@Test
+	@WithMockUser(username = "your-username", password = "your-password", roles = "USER")
 	public void testScenario5() throws Exception {
 		CalculatorParameters request = new CalculatorParameters("1/0");
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -89,6 +95,7 @@ class CalculatorApplicationTests {
 	}
 
 	@Test
+	@WithMockUser(username = "your-username", password = "your-password", roles = "USER")
 	public void testScenario6() throws Exception {
 		CalculatorParameters request = new CalculatorParameters("((22)+(63))/2");
 		ObjectMapper objectMapper = new ObjectMapper();
